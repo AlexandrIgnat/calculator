@@ -72,7 +72,7 @@ func Multy(val_left, val_right int) int {
 }
 
 func Div(val_left, val_right int) int {
-	return val_left * val_right
+	return val_left / val_right
 }
 
 func validation(data []string) (val_left, val_right int) {
@@ -96,6 +96,7 @@ func is_rome_numbers(data []string) (val_left, val_right int, is_rome_numbers bo
 	}
 	val_left, left_err := rom_numbers[strings.TrimSpace(data[0])]
 	val_right, right_err := rom_numbers[strings.TrimSpace(data[1])]
+		
 	if (left_err && !right_err) || (!left_err && right_err) {
 		log.Panic("Не корректный ввод")
 	} else if !left_err && !right_err {
@@ -145,9 +146,9 @@ func FindMathMethod(data []string, characters string) string {
 			case "/":
 				val = Div(val_left, val_right)
 			default:
-				fmt.Printf("%s.\n", characters)
-		}
-		
+				panic("Не распознанный знак.")
+			}
+
 		return strconv.Itoa(val)
 	} else {
 		switch characters {
@@ -160,7 +161,7 @@ func FindMathMethod(data []string, characters string) string {
 			case "/":
 				val = Div(val_left, val_right)
 			default:
-				fmt.Printf("%s.\n", characters)
+				panic("Не распознанный знак.")
 		}
 
 		return intToRoman(val)
